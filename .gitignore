@@ -1,0 +1,10 @@
+# macOS system files
+.DS_Store
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+
+# VSCode settings
+.vscode/
