@@ -1,0 +1,8 @@
+## Interface: 11400
+## Title: Hardcore Classic Dungeons
+## Notes: A simple addon to help with dugneons for WoW Classic Hardcore
+## Author: Hunter Shaw
+## Version: 1.0.0
+## SavedVariables: HardcoreClassicDungeonsDB
+
+HardcoreClassicDungeons.lua
