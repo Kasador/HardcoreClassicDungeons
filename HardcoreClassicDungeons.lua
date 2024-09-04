@@ -50,7 +50,7 @@ local function CreateRoleIcons()
         -- Create the icon button (without check)
         local roleIcon = CreateFrame("Frame", "HCD" .. role .. "Icon", frame)
         roleIcon:SetSize(64, 64)
-        roleIcon:SetPoint("TOP", frame, "TOP", (-64 + (i - 2) * 90), -40)
+        roleIcon:SetPoint("TOP", frame, "TOP", (150 + (i - 2) * 90), -40)
 
         -- Set role icon using the custom icon paths
         local icon = roleIcon:CreateTexture(nil, "BACKGROUND")
@@ -74,14 +74,20 @@ local function CreateRoleIcons()
     end
 end
 
-
 -- Call the function to create role icons
 CreateRoleIcons()
 
 -- Create a scroll frame for the dungeon list
 local scrollFrame = CreateFrame("ScrollFrame", "HCDScrollFrame", frame, "UIPanelScrollFrameTemplate")
-scrollFrame:SetSize(400, 300)
-scrollFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 10, -120)
+scrollFrame:SetSize(250, 300)
+scrollFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 30, -110)
+
+-- Add a solid non-transparent border using NineSlice API
+local borderFrame = CreateFrame("Frame", "DungeonListBorder", frame, "TooltipBorderedFrameTemplate")
+borderFrame:SetSize(250, 300)
+borderFrame:SetPoint("TOPLEFT", scrollFrame, -15, 10)
+borderFrame:SetPoint("BOTTOMRIGHT", scrollFrame, 30, -10)
+
 
 -- Scroll child frame (content inside the scroll)
 local content = CreateFrame("Frame", "HCDScrollChild", scrollFrame)
@@ -131,7 +137,7 @@ local function CreateDungeonList(showAll)
     }
 
     local playerLevel = UnitLevel("player")
-    local yOffset = -25
+    local yOffset = -15
     local contentHeight = 0
 
     -- Display warning if player level is too low
@@ -139,7 +145,7 @@ local function CreateDungeonList(showAll)
         local warningText = content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         warningText:SetPoint("TOPLEFT", content, "TOPLEFT", 10, yOffset)
         warningText:SetTextColor(1, 0, 0)  -- Red text
-        warningText:SetText("You're currently too low of a level for dungeons.")
+        warningText:SetText("No Dungeons Available.")
         yOffset = yOffset - 20
         contentHeight = contentHeight + 20
         table.insert(dungeonTextFrames, warningText)
@@ -174,12 +180,13 @@ end
 -- Toggle button to show all dungeons or just relevant ones
 local toggleButton = CreateFrame("Button", "HCDToggleButton", frame, "UIPanelButtonTemplate")
 toggleButton:SetSize(100, 30)
-toggleButton:SetPoint("BOTTOM", frame, "BOTTOM", 0, 30)
+toggleButton:SetPoint("BOTTOM", frame, "BOTTOM", -195, 30)
 toggleButton:SetText("Show All")
 toggleButton:SetScript("OnClick", function()
     showAllDungeons = not showAllDungeons
     if showAllDungeons then
         toggleButton:SetText("Show Less")
+
     else
         toggleButton:SetText("Show All")
     end
