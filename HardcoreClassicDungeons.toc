@@ -5,4 +5,9 @@
 ## Version: 1.0.0
 ## SavedVariables: HardcoreClassicDungeonsDB
 
+Icons/TankIcon.tga
+Icons/HealerIcon.tga
+Icons/DPSIcon.tga
+
+HardcoreClassicDungeons.xml
 HardcoreClassicDungeons.lua
